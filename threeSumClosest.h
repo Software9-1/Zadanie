@@ -1,8 +1,9 @@
 #pragma once 
 
-int threeSumClosest(vector<int>& num, int target) {
+int threeSumClosest() {
     sort(num.begin(), num.end());
-
+    num = 1;
+    target = 1;
     int n = num.size();
     int distance = INT_MAX;
     int result;
