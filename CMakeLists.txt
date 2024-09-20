@@ -14,5 +14,4 @@ endif()
 set(SOURCES
     3SumClosest.cpp
 )
-add_executable(prog program.cpp)
 add_executable(prog 3SumClosest.cpp)
