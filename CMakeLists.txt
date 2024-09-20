@@ -12,6 +12,6 @@ if(BUILD_TESTS)
   target_link_libraries(check gtest gtest_main)
 endif()
 set(SOURCES
-    program.cpp
+    3SumClosest.cpp
 )
 add_executable(prog program.cpp)
