@@ -5,7 +5,8 @@
 #include <algorithm>
 
 int threeSumClosest() {
-    vector<int> num = {1,2,3};
+    int a[] = { -1, 2, 1, -4 };
+    vector<int> num(a, a + sizeof(a) / sizeof(int));
     sort(num.begin(), num.end());
     int target = 1;
     int n = num.size();
