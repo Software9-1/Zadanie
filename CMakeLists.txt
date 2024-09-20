@@ -1,17 +1,11 @@
-cmake_minimum_required(VERSION 3.4)
-project(ChainOfResponsibilityPattern)
+cmake_minimum_required(VERSION 3.10)
+project(ThreeSumClosest)
+
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(BUILD_TESTS "Build tests" ON)
+# Добавляем исполняемый файл
+add_executable(three_sum_closest src/main.cpp src/three_sum_closest.cpp)
 
-if(BUILD_TESTS)
-  enable_testing()
-  add_executable(check tests/tests.cpp)
-  include_directories(./)
-  target_link_libraries(check gtest gtest_main)
-endif()
-set(SOURCES
-    3SumClosest.cpp
-)
-add_executable(prog 3SumClosest.cpp)
+# Добавляем тесты
+enable_testing()
+add_test(NAME ThreeSumClosestTests COMMAND three_sum_closest)
