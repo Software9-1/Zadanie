@@ -1,11 +1,11 @@
 #pragma once 
-
+#include<limits.h>
 #include <vector>
 #include <set>
 #include <algorithm>
 
 int threeSumClosest() {
-    vector<int> num = {1};
+    vector<int> num = {1,2,3};
     sort(num.begin(), num.end());
     int target = 1;
     int n = num.size();
