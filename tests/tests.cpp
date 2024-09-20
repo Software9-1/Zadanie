@@ -4,5 +4,5 @@
 
 TEST(ATEST, BTEST) {
 
-    EXPECT_EQ(2, threeSumClosest({-1, 2, 1, -4 }, 1));
+    EXPECT_EQ(2, ThreeSumClosest(1, 1));
 }
