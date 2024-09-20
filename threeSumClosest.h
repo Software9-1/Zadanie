@@ -40,3 +40,7 @@ int threeSumClosest(vector<int>& num, int target) {
 
     return result;
 }
+int ThreeSumClosest(int v, int target)
+{
+    return v + target;
+}
