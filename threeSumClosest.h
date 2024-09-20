@@ -1,9 +1,13 @@
 #pragma once 
 
+#include <vector>
+#include <set>
+#include <algorithm>
+
 int threeSumClosest() {
+    vector<int> num = {1};
     sort(num.begin(), num.end());
-    num = 1;
-    target = 1;
+    int target = 1;
     int n = num.size();
     int distance = INT_MAX;
     int result;
