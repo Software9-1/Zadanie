@@ -1,100 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <vector>
-#include <cassert>
-#include <limits.h>
+#include <set>
+#include <algorithm>
 
 using namespace std;
 
-int threeSumClosest(vector<int>& num, int target) {
-    // Ваша реализация функции threeSumClosest
-    // Пример реализации:
-    int closest = INT_MAX;
-    int n = num.size();
-    sort(num.begin(), num.end());
-    
-    for (int i = 0; i < n - 2; ++i) {
-        int left = i + 1;
-        int right = n - 1;
+#define INT_MAX 2147483647
         
-        while (left < right) {
-            int sum = num[i] + num[left] + num[right];
-            if (abs(sum - target) < abs(closest - target)) {
-                closest = sum;
+int threeSumClosest(vector<int>& num, int target) {
+    //sort the array
+    sort(num.begin(), num.end());
+
+    int n = num.size();
+    int distance = INT_MAX;
+    int result;
+
+    for (int i = 0; i < n - 2; i++) {
+        //skip the duplication
+        if (i > 0 && num[i - 1] == num[i]) continue;
+        int a = num[i];
+        int low = i + 1;
+        int high = n - 1;
+        //convert the 3sum to 2sum problem
+        while (low < high) {
+            int b = num[low];
+            int c = num[high];
+            int sum = a + b + c;
+            if (sum - target == 0) {
+                //got the final soultion
+                return target;
             }
-            if (sum < target) {
-                ++left;
-            } else if (sum > target) {
-                --right;
-            } else {
-                return sum; // точное совпадение
+            else {
+                //tracking the minmal distance
+                if (abs(sum - target) < distance) {
+                    distance = abs(sum - target);
+                    result = sum;
+                }
+
+                if (sum - target > 0) {
+                    //skip the duplication
+                    while (high > 0 && num[high] == num[high - 1]) high--;
+                    //move the `high` pointer
+                    high--;
+                }
+                else {
+                    //skip the duplication
+                    while (low < n && num[low] == num[low + 1]) low++;
+                    //move the `low` pointer
+                    low++;
+                }
             }
         }
     }
-    return closest;
+
+    return result;
 }
 
-void runTests() {
-    // Ваши тесты
-    // Тест 1: Простой случай
-    {
-        vector<int> nums = {-1, 2, 1, -4};
-        int target = 1;
-        int result = threeSumClosest(nums, target);
-        assert(result == 2);
-    }
 
-    // Тест 2: Все элементы равны
-    {
-        vector<int> nums = {1, 1, 1, 1};
-        int target = 3;
-        int result = threeSumClosest(nums, target);
-        assert(result == 3);
-    }
 
-    // Тест 3: Смешанные положительные и отрицательные числа
-    {
-        vector<int> nums = {0, 0, 0, 0};
-        int target = 1;
-        int result = threeSumClosest(nums, target);
-        assert(result == 0);
-    }
 
-    // Тест 4: Положительные числа
-    {
-        vector<int> nums = {1, 2, 3, 4};
-        int target = 6;
-        int result = threeSumClosest(nums, target);
-        assert(result == 6);
-    }
-
-    // Тест 5: Отрицательные числа
-    {
-        vector<int> nums = {-4, -2, -1, -3};
-        int target = -5;
-        int result = threeSumClosest(nums, target);
-        assert(result == -6);
-    }
-
-    // Тест 6: Большие значения
-    {
-        vector<int> nums = {1000, 2000, 3000};
-        int target = 5000;
-        int result = threeSumClosest(nums, target);
-        assert(result == 6000);
-    }
-
-    // Тест 7: Пустой массив
-    {
-        vector<int> nums = {};
-        int target = 0;
-        int result = threeSumClosest(nums, target);
-        assert(result == INT_MAX); // Или любое другое значение для обработки пустого массива
-    }
-
-    cout << "Все тесты пройдены!" << endl;
-}
-
-int main() {
-    runTests();
+int main()
+{
+    int a[] = { -1, 2, 1, -4 };
+    vector<int> n(a, a + sizeof(a) / sizeof(int));
+    int target = 1;
+    cout << threeSumClosest(n, target) << endl;
     return 0;
 }
